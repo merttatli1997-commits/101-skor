@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>101 Skor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --surface: #18181c;
+      --surface2: #222228;
+      --border: #2e2e38;
+      --accent: #c9a84c;
+      --accent2: #e8c97a;
+      --red: #d94f4f;
+      --green: #4caf7d;
+      --text: #f0ede8;
+      --muted: #777;
+      --radius: 10px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      background-image: radial-gradient(ellipse at 20% 0%, #1a1508 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 100%, #0a0a14 0%, transparent 60%);
+    }
+    #setup {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      animation: fadeIn 0.4s ease;
+    }
+    .logo { text-align: center; margin-bottom: 48px; }
+    .logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .logo p {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .setup-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+    .setup-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .toggle-group { display: flex; gap: 8px; }
+    .toggle-btn {
+      flex: 1;
+      padding: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--muted);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toggle-btn.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+    .toggle-btn:hover:not(.active) { border-color: var(--accent); color: var(--text); }
+    .player-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .player-input-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .player-input-wrap label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    input[type="text"] {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      padding: 10px 12px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.15s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    input[type="text"]:focus { border-color: var(--accent); }
+    input[type="text"]::placeholder { color: var(--muted); }
+    .start-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      color: #000;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.15s;
+    }
+    .start-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+    #game {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+      animation: fadeIn 0.4s ease;
+    }
+    .game-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .game-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); }
+    .game-meta { display: flex; gap: 8px; align-items: center; }
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .new-game-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--muted);
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .new-game-btn:hover { border-color: var(--red); color: var(--red); }
+    .scoreboard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .score-row {
+      display: grid;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+      animation: slideIn 0.2s ease;
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-row:hover { background: var(--surface2); }
+    .score-cell {
+      padding: 12px 16px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .score-cell.round-num { color: var(--muted); font-size: 12px; }
+    .score-cell.header {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--accent);
+      padding: 14px 16px;
+      background: var(--surface2);
+    }
+    .penalty-tag {
+      background: rgba(217,79,79,0.15);
+      border: 1px solid rgba(217,79,79,0.3);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 11px;
+      color: var(--red);
+    }
+    .totals-row { background: var(--surface2); border-top: 2px solid var(--border); }
+    .totals-row .score-cell { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--accent2); padding: 16px; }
+    .totals-row .score-cell.round-num { font-size: 12px; color: var(--muted); font-family: 'Lato', sans-serif; }
+    .round-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .round-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 20px; }
+    .round-card h3 span { color: var(--accent); }
+    .round-inputs { display: grid; gap: 12px; margin-bottom: 20px; }
+    .player-score-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .player-score-row .pname { font-size: 14px; font-weight: 700; }
+    .player-score-row .pname small { font-weight: 300; color: var(--muted); font-size: 12px; }
+    .score-input {
+      width: 90px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 8px 10px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .score-input:focus { border-color: var(--accent); }
+    .score-input:disabled { opacity: 0.7; }
+    .penalty-btns { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .pen-btn {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      background: var(--surface2);
+      color: var(--muted);
+    }
+    .pen-btn:hover { border-color: var(--red); color: var(--red); }
+    .pen-btn.active { background: rgba(217,79,79,0.15); border-color: var(--red); color: var(--red); }
+    .add-round-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .add-round-btn:hover { background: var(--accent); color: #000; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+  </style>
+</head>
+<body>
+
+<div id="setup">
+  <div class="logo">
+    <h1>101</h1>
+    <p>Skor Takipçisi</p>
+  </div>
+  <div class="setup-card">
+    <h3>Oyun Türü</h3>
+    <div class="toggle-group">
+      <button class="toggle-btn active" onclick="setMode('esli')" id="btn-esli">Eşli</button>
+      <button class="toggle-btn" onclick="setMode('essiz')" id="btn-essiz">Eşsiz</button>
+    </div>
+  </div>
+  <div class="setup-card">
+    <h3>Oyuncular</h3>
+    <div id="player-inputs"></div>
+  </div>
+  <button class="start-btn" onclick="startGame()">Oyunu Başlat</button>
+</div>
+
+<div id="game">
+  <div class="game-header">
+    <div class="game-title">101 <span style="font-size:16px;color:var(--muted);font-family:'Lato',sans-serif;" id="game-mode-label"></span></div>
+    <div class="game-meta">
+      <span class="badge" id="round-badge">El 1</span>
+      <button class="new-game-btn" onclick="resetGame()">↺ Yeni Oyun</button>
+    </div>
+  </div>
+  <div class="scoreboard" id="scoreboard"></div>
+  <div class="round-card">
+    <h3>El <span id="round-num">1</span> Sonucu</h3>
+    <div class="round-inputs" id="round-inputs"></div>
+    <button class="add-round-btn" onclick="addRound()">El Ekle →</button>
+  </div>
+</div>
+
+<script>
+  let state = { mode: 'esli', players: [], rounds: [], currentRound: 1 };
+  const cezaCounts = {};
+
+  function setMode(m) {
+    state.mode = m;
+    document.getElementById('btn-esli').classList.toggle('active', m === 'esli');
+    document.getElementById('btn-essiz').classList.toggle('active', m === 'essiz');
+    renderPlayerInputs();
+  }
+
+  function renderPlayerInputs() {
+    const c = document.getElementById('player-inputs');
+    if (state.mode === 'esli') {
+      c.innerHTML = `<div class="player-grid">
+        <div class="player-input-wrap"><label style="color:var(--accent)">Takım 1 — A</label><input type="text" id="p0" placeholder="İsim" tabindex="1"/></div>
+        <div class="player-input-wrap"><label style="color:#7ab4e8">Takım 2 — A</label><input type="text" id="p2" placeholder="İsim" tabindex="3"/></div>
+        <div class="player-input-wrap"><label style="color:var(--accent)">Takım 1 — B</label><input type="text" id="p1" placeholder="İsim" tabindex="2"/></div>
+        <div class="player-input-wrap"><label style="color:#7ab4e8">Takım 2 — B</label><input type="text" id="p3" placeholder="İsim" tabindex="4"/></div>
+      </div>`;
+    } else {
+      c.innerHTML = `<div class="player-grid">${[0,1,2,3].map(i=>`
+        <div class="player-input-wrap"><label>Oyuncu ${i+1}</label><input type="text" id="p${i}" placeholder="İsim"/></div>`).join('')}</div>`;
+    }
+  }
+
+  function startGame() {
+    const tc = s => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    const names = [0,1,2,3].map(i => tc(document.getElementById('p'+i)?.value.trim() || `Oyuncu ${i+1}`));
+    state.players = state.mode === 'esli'
+      ? [{ name: names[0], team: 0 }, { name: names[1], team: 0 }, { name: names[2], team: 1 }, { name: names[3], team: 1 }]
+      : names.map((n, i) => ({ name: n, team: i }));
+    state.rounds = [];
+    state.currentRound = 1;
+    document.getElementById('setup').style.display = 'none';
+    document.getElementById('game').style.display = 'block';
+    document.getElementById('game-mode-label').textContent = state.mode === 'esli' ? '· Eşli' : '· Eşsiz';
+    renderScoreboard();
+    renderRoundInputs();
+  }
+
+  function resetGame() {
+    if (!confirm('Oyunu sıfırlamak istediğine emin misin?')) return;
+    document.getElementById('setup').style.display = 'block';
+    document.getElementById('game').style.display = 'none';
+  }
+
+  function renderRoundInputs() {
+    document.getElementById('round-num').textContent = state.currentRound;
+    document.getElementById('round-badge').textContent = 'El ' + state.currentRound;
+    const container = document.getElementById('round-inputs');
+    container.innerHTML = '';
+    state.players.forEach((p, i) => {
+      cezaCounts[i] = 0;
+      const tc = state.mode === 'esli' ? (p.team === 0 ? 'var(--accent)' : '#7ab4e8') : 'var(--accent)';
+      const tl = state.mode === 'esli' ? `<small style="color:${tc}"> Takım ${p.team+1}</small>` : '';
+      const row = document.createElement('div');
+      row.className = 'player-score-row';
+      row.innerHTML = `
+        <div class="pname" style="color:${tc}">${p.name}${tl}</div>
+        <input type="number" class="score-input" id="score-${i}" placeholder="0"
+          oninput="this.dataset.base=this.value"/>
+        <div class="penalty-btns">
+          <button class="pen-btn" id="pen-ceza-${i}" onclick="addCeza(${i})">Ceza +101</button>
+          <div id="ceza-ctrl-${i}" style="display:none;align-items:center;gap:4px;">
+            <button class="pen-btn" style="padding:4px 8px;font-size:14px;" onclick="changeCeza(${i},-1)">−</button>
+            <span id="ceza-count-${i}" style="font-size:13px;color:var(--red);min-width:60px;text-align:center;font-weight:700;"></span>
+            <button class="pen-btn" style="padding:4px 8px;font-size:14px;" onclick="changeCeza(${i},1)">+</button>
+          </div>
+          <button class="pen-btn" id="pen-acamadi-${i}" onclick="toggleAcamadi(${i})">Açamadı +202</button>
+          <button class="pen-btn" id="pen-bitti-${i}" onclick="toggleBitti(${i})">Bitti −101</button>
+          <button class="pen-btn" id="pen-okey-${i}" onclick="toggleOkeyBitti(${i})">Okey/Çift Bitti −202</button>
+        </div>`;
+      container.appendChild(row);
+    });
+  }
+
+  function addCeza(idx) { cezaCounts[idx] = 1; updateCezaUI(idx); }
+
+  function changeCeza(idx, delta) {
+    cezaCounts[idx] = Math.max(0, (cezaCounts[idx] || 0) + delta);
+    updateCezaUI(idx);
+  }
+
+  function updateCezaUI(idx) {
+    const count = cezaCounts[idx] || 0;
+    document.getElementById('pen-ceza-'+idx).classList.toggle('active', count > 0);
+    const ctrl = document.getElementById('ceza-ctrl-'+idx);
+    ctrl.style.display = count > 0 ? 'flex' : 'none';
+    if (count > 0) document.getElementById('ceza-count-'+idx).textContent = count + ' ceza';
+    updateTotalScore(idx);
+  }
+
+  function toggleOkeyBitti(idx) {
+    const btn = document.getElementById('pen-okey-'+idx);
+    if (!btn.classList.contains('active')) {
+      for (let i = 0; i < state.players.length; i++) {
+        if (i !== idx && (document.getElementById('pen-bitti-'+i)?.classList.contains('active') || document.getElementById('pen-okey-'+i)?.classList.contains('active'))) {
+          alert('Bir elde sadece bir oyuncu bitebilir!');
+          return;
+        }
+      }
+      // Normal bitti'yi kapat
+      document.getElementById('pen-bitti-'+idx)?.classList.remove('active');
+    }
+    btn.classList.toggle('active');
+    updateTotalScore(idx);
+  }
+
+  function toggleAcamadi(idx) {
+    document.getElementById('pen-acamadi-'+idx).classList.toggle('active');
+    updateTotalScore(idx);
+  }
+
+  function toggleBitti(idx) {
+    const btn = document.getElementById('pen-bitti-'+idx);
+    if (!btn.classList.contains('active')) {
+      for (let i = 0; i < state.players.length; i++) {
+        if (i !== idx && (document.getElementById('pen-bitti-'+i)?.classList.contains('active') || document.getElementById('pen-okey-'+i)?.classList.contains('active'))) {
+          alert('Bir elde sadece bir oyuncu bitebilir!');
+          return;
+        }
+      }
+      // Okey bitti'yi kapat
+      document.getElementById('pen-okey-'+idx)?.classList.remove('active');
+    }
+    btn.classList.toggle('active');
+    updateTotalScore(idx);
+  }
+
+  function updateTotalScore(idx) {
+    const input = document.getElementById('score-'+idx);
+    const cezaCount = cezaCounts[idx] || 0;
+    const acamadi = document.getElementById('pen-acamadi-'+idx)?.classList.contains('active');
+    const bitti = document.getElementById('pen-bitti-'+idx)?.classList.contains('active');
+    const okeyBitti = document.getElementById('pen-okey-'+idx)?.classList.contains('active');
+    const base = parseInt(input.dataset.base) || 0;
+    const extra = (cezaCount * 101) + (acamadi ? 202 : 0) - (bitti ? 101 : 0) - (okeyBitti ? 202 : 0);
+    if (cezaCount > 0 || acamadi || bitti || okeyBitti) {
+      input.value = base + extra;
+      input.disabled = true;
+    } else {
+      input.value = base > 0 ? base : '';
+      input.disabled = false;
+    }
+  }
+
+  function addRound() {
+    const scores = [], penalties = [];
+    for (let i = 0; i < state.players.length; i++) {
+      scores.push(parseInt(document.getElementById('score-'+i).value) || 0);
+      const cc = cezaCounts[i] || 0;
+      const ac = document.getElementById('pen-acamadi-'+i)?.classList.contains('active');
+      const bt = document.getElementById('pen-bitti-'+i)?.classList.contains('active');
+      const ok = document.getElementById('pen-okey-'+i)?.classList.contains('active');
+      let pen = ac ? 'acamadi' : cc > 0 ? 'ceza:'+cc : '';
+      if (bt) pen = pen ? pen+'+bitti' : 'bitti';
+      if (ok) pen = pen ? pen+'+okey' : 'okey';
+      penalties.push(pen);
+    }
+    Object.keys(cezaCounts).forEach(k => { cezaCounts[k] = 0; });
+    state.rounds.push({ scores, penalties });
+    state.currentRound++;
+    renderScoreboard();
+    renderRoundInputs();
+    document.getElementById('round-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function getTotals() {
+    const t = state.players.map(() => 0);
+    state.rounds.forEach(r => r.scores.forEach((s, i) => { t[i] += s; }));
+    return t;
+  }
+
+  function renderScoreboard() {
+    const cols = `60px repeat(4, 1fr)`;
+    let html = '';
+    html += `<div class="score-row" style="grid-template-columns:${cols}">`;
+    html += `<div class="score-cell header" style="color:var(--muted);font-family:'Lato',sans-serif;font-size:12px;">El</div>`;
+    state.players.forEach(p => {
+      const c = state.mode === 'esli' ? (p.team === 0 ? 'var(--accent)' : '#7ab4e8') : 'var(--accent)';
+      html += `<div class="score-cell header" style="color:${c}">${p.name}</div>`;
+    });
+    html += '</div>';
+
+    state.rounds.forEach((r, ri) => {
+      html += `<div class="score-row" style="grid-template-columns:${cols}">`;
+      html += `<div class="score-cell round-num">${ri+1}</div>`;
+      r.scores.forEach((s, i) => {
+        let ex = '';
+        if (r.penalties[i]?.startsWith('ceza')) ex += `<span class="penalty-tag">${r.penalties[i].split(':')[1]||1} CEZA</span>`;
+        if (r.penalties[i]?.includes('acamadi')) ex += `<span class="penalty-tag">AÇAMADI</span>`;
+        if (r.penalties[i]?.includes('bitti')) ex += `<span class="penalty-tag" style="color:var(--green);border-color:rgba(76,175,125,0.3);background:rgba(76,175,125,0.1)">BİTTİ</span>`;
+        if (r.penalties[i]?.includes('okey')) ex += `<span class="penalty-tag" style="color:var(--green);border-color:rgba(76,175,125,0.3);background:rgba(76,175,125,0.1)">OKEY BİTTİ</span>`;
+        html += `<div class="score-cell">${s}${ex}</div>`;
+      });
+      html += '</div>';
+    });
+
+    const totals = getTotals();
+    html += `<div class="score-row totals-row" style="grid-template-columns:${cols}">`;
+    html += `<div class="score-cell round-num">TOPLAM</div>`;
+    totals.forEach(t => { html += `<div class="score-cell" style="font-weight:700;font-size:16px;">${t}</div>`; });
+    html += '</div>';
+
+    if (state.mode === 'esli') {
+      const tt = [totals[0]+totals[1], totals[2]+totals[3]];
+      html += `<div class="score-row" style="grid-template-columns:${cols};background:rgba(201,168,76,0.06)">`;
+      html += `<div class="score-cell round-num">TAKIM</div>`;
+      html += `<div class="score-cell" style="color:var(--accent);font-weight:700;font-size:15px;grid-column:span 2">${tt[0]}</div>`;
+      html += `<div class="score-cell" style="color:#7ab4e8;font-weight:700;font-size:15px;grid-column:span 2">${tt[1]}</div>`;
+      html += '</div>';
+    }
+
+    document.getElementById('scoreboard').innerHTML = html;
+  }
+
+  renderPlayerInputs();
+</script>
+</body>
+</html>
