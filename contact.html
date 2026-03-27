@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İletişim – 101 Skor Takipçisi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --surface: #18181c;
+      --surface2: #222228;
+      --border: #2e2e38;
+      --accent: #c9a84c;
+      --accent2: #e8c97a;
+      --text: #f0ede8;
+      --muted: #777;
+      --radius: 10px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      background-image: radial-gradient(ellipse at 20% 0%, #1a1508 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 100%, #0a0a14 0%, transparent 60%);
+    }
+
+    header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header a.logo-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    header a.nav-link {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    header a.nav-link:hover { color: var(--text); }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .page-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #0e0e10;
+    }
+
+    .contact-info h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-info a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .contact-info a:hover { border-color: var(--accent); }
+
+    .note {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo-link" href="/">101</a>
+    <a class="nav-link" href="/privacy.html">Gizlilik Politikası</a>
+  </header>
+
+  <div class="container">
+    <p class="page-label">Bize Ulaşın</p>
+    <h1>İletişim</h1>
+    <p class="subtitle">Öneri, geri bildirim veya sorularınız için aşağıdan bize ulaşabilirsiniz.</p>
+
+    <div class="contact-card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </div>
+      <div class="contact-info">
+        <h3>E-posta</h3>
+        <a href="mailto:sadecedesigniletisim@gmail.com">sadecedesigniletisim@gmail.com</a>
+      </div>
+    </div>
+
+    <p class="note">Mesajlarınıza en kısa sürede dönmeye çalışırız. Uygulama ile ilgili hata bildirimleri ve önerilerinizi de bu adres üzerinden iletebilirsiniz.</p>
+  </div>
+
+  <footer>
+    <p>© 2026 101 Skor Takipçisi &nbsp;·&nbsp; <a href="/">Ana Sayfa</a> &nbsp;·&nbsp; <a href="/privacy.html">Gizlilik Politikası</a></p>
+  </footer>
+
+</body>
+</html>
