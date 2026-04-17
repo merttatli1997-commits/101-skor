@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>101 Skor</title>
+  <title>101 Skor Takipçisi — 101 Okey Skor Tutma Uygulaması</title>
+  <meta name="description" content="101 Okey için ücretsiz skor takip uygulaması. Eşli ve eşsiz modlar, otomatik puan hesaplama, çift okey ve elden bitirme desteği. Kayıtsız kullanım."/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145233193687325" crossorigin="anonymous"></script>
   <style>
@@ -346,6 +347,110 @@
     }
     footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
     footer a:hover { color: var(--accent); }
+
+    /* ===== İÇERİK BLOKLARI / ACCORDION (AdSense için) ===== */
+    #content-blocks {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+    }
+    .accordion-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .accordion-item.open { border-color: rgba(201,168,76,0.4); }
+    .accordion-toggle {
+      width: 100%;
+      padding: 16px 20px;
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: color 0.15s;
+    }
+    .accordion-toggle:hover { color: var(--text); }
+    .accordion-item.open .accordion-toggle { color: var(--accent); }
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      transition: all 0.25s ease;
+      line-height: 1;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 2400px;
+    }
+    .accordion-inner {
+      padding: 0 20px 20px;
+      line-height: 1.75;
+      font-size: 14px;
+      color: #d8d3c8;
+    }
+    .accordion-inner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--accent);
+      margin: 18px 0 6px;
+    }
+    .accordion-inner h3:first-child { margin-top: 4px; }
+    .accordion-inner p { margin-bottom: 12px; }
+    .accordion-inner p:last-child { margin-bottom: 0; }
+    .accordion-inner strong { color: var(--accent2); }
+    .content-divider {
+      max-width: 480px;
+      margin: 0 auto 20px;
+      padding: 0 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .content-divider::before,
+    .content-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    @media (max-width: 600px) {
+      .accordion-toggle { font-size: 15px; padding: 14px 18px; }
+      .accordion-inner { padding: 0 18px 18px; font-size: 13px; }
+    }
   </style>
 </head>
 <body>
@@ -386,7 +491,108 @@
   </div>
 </div>
 
+<!-- ============ İÇERİK BLOKLARI / ACCORDION (Sadece setup ekranında) ============ -->
+<div id="content-blocks">
+
+  <div class="content-divider">Bilgi</div>
+
+  <div class="accordion-item">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      101 Nasıl Oynanır?
+      <span class="accordion-icon">+</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <p>
+          101 Okey, Türkiye'nin en sevilen masa oyunlarından biridir. İki ya da dört kişiyle oynanabilen bu oyun, hem strateji hem de şans gerektirir. Amaç, elindeki taşları belirli kombinasyonlar halinde açarak puan toplamak ve diğer oyuncuların elinde fazla puan kalmasını sağlamaktır.
+        </p>
+        <h3>Oyunun Temelleri</h3>
+        <p>
+          Oyunda toplam 106 taş bulunur: 1'den 13'e kadar numaralanmış dört farklı renkte (siyah, kırmızı, mavi, sarı) iki takım taş ve iki adet sahte okey taşı. Her oyuncuya 14 taş dağıtılır, başlayan oyuncuya ise 15 taş verilir. Geriye kalan taşlar ortaya kapalı olarak yığılır ve en üstteki taş açılarak gösterge olarak kullanılır.
+        </p>
+        <h3>Gösterge ve Okey Taşı</h3>
+        <p>
+          Gösterge taşının bir sonraki numarası "okey" sayılır. Örneğin gösterge sarı 7 ise, sarı 8 taşları okey görevi görür. Okey taşları, oyun boyunca eksik olan herhangi bir taşın yerine kullanılabilir. Sahte okey taşları ise oyunun başında istediğiniz herhangi bir taşı temsil edebilir.
+        </p>
+        <h3>Eli Açma Kuralı</h3>
+        <p>
+          Bir oyuncunun eli açabilmesi için, masaya ilk taşlarını dizdiğinde toplam taş değerinin <strong>en az 101 puan</strong> olması gerekir. Bu nedenle oyunun adı 101'dir. Açılış sırasında seri (aynı renkten ardışık taşlar) ve per (farklı renklerde aynı sayılı taşlar) kullanılabilir. Eli açtıktan sonra oyuncu, masadaki diğer taşlarla oynayabilir hale gelir.
+        </p>
+        <h3>Eşli ve Eşsiz Oynama</h3>
+        <p>
+          101 hem bireysel (eşsiz) hem de takım halinde (eşli) oynanabilir. Eşli modda iki takım ikişer kişiden oluşur ve karşılıklı oturan oyuncular partner olur. Takım puanları birlikte hesaplanır, bu da stratejiyi tamamen değiştirir; partnerinizin elini güçlendirecek taşları masada bırakmak ya da ortağınıza taş hazırlamak gibi taktikler önem kazanır.
+        </p>
+        <h3>Oyunun Sonu</h3>
+        <p>
+          Bir el, oyunculardan biri elindeki tüm taşları açıp tek bir taşı atana kadar devam eder. El biten oyuncuya "elini bitirdi" denir ve diğer oyuncuların elinde kalan taşların puanları toplanarak skor tahtasına yazılır. Hedef puana (genellikle 501 ya da 1001) ilk ulaşan oyuncu ya da takım kaybeder; çünkü 101'de düşük puan iyidir.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      101'de Puanlama Sistemi
+      <span class="accordion-icon">+</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <p>
+          101 Okey'de doğru puanlama, oyunun en kritik ve en çok karışıklığa yol açan kısmıdır. Pek çok oyuncu el sonunda kaç puan yazılacağı konusunda anlaşmazlığa düşer. İşte standart 101 puanlama kuralları.
+        </p>
+        <h3>Standart El Sonu Puanlaması</h3>
+        <p>
+          Bir oyuncu elini bitirdiğinde, diğer oyuncuların elinde kalan taşların sayısal değerleri toplanır. 1'den 13'e kadar olan taşlar üzerlerindeki sayı kadar puan değerindedir. Okey ve sahte okey taşları ise her biri <strong>50 puan</strong> olarak yazılır. Yüksek puan kötüdür; amaç elindeki taş değerini düşük tutmaktır.
+        </p>
+        <h3>Çift Okey ile Bitirme</h3>
+        <p>
+          Bir oyuncu elini iki okey taşıyla aynı anda kapatırsa (örneğin bir per veya seri içinde iki okey kullanarak), diğer oyuncuların puanı <strong>iki katına</strong> çıkar. Bu duruma "çift okeyle bitirme" denir ve oyunun en heyecanlı anlarından biridir.
+        </p>
+        <h3>Elden Bitirme</h3>
+        <p>
+          Bir oyuncu hiçbir taş açmadan, masadan taş çekmeden elindeki taşlarla bütünüyle kapatma yaparsa buna "elden bitirme" denir. Bu durumda kalan oyuncuların puanları yine iki katına çıkar; çift okey ile birleşirse dört katına çıkabilir.
+        </p>
+        <h3>Eşli Modda Puanlama</h3>
+        <p>
+          Eşli oyunda her oyuncunun puanı bireysel olarak hesaplanır, ancak takımdaki iki oyuncunun puanları toplanır. El biten oyuncunun ortağına da o el için puan yazılmaz; karşı takımın iki oyuncusunun elinde kalan toplam puan, o takıma yazılır.
+        </p>
+        <h3>Ceza Puanları</h3>
+        <p>
+          Bazı oyun varyasyonlarında, taşlarını yanlış açan ya da el bitiremeyen oyunculara <strong>101 puan ceza</strong> yazılır. Bunun yanında, oyuna hazır olmasına rağmen bitirmeyi tercih etmeyen oyunculara da bazı yöresel kurallarda ek ceza puanları verilebilir.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      Skor Takipçisi Nasıl Kullanılır?
+      <span class="accordion-icon">+</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <p>
+          101 Skor Takipçisi'ni kullanmak son derece basittir. Öncelikle oyun türünü seçin: ikili karşılaşmalar için "Eşsiz", takım halinde oynanan partiler için "Eşli" modu uygundur. Ardından oyuncuların ya da takım üyelerinin isimlerini girin ve "Oyunu Başlat" düğmesine basın.
+        </p>
+        <p>
+          Her el bittikten sonra, kalan oyuncuların taş puanlarını ilgili alanlara girin. Sistem, çift okey ve elden bitirme gibi özel durumları da hesaba katarak el sonu skorunu otomatik olarak hesaplar. Oyun ilerledikçe geçmiş ellerin dökümünü görebilir, hedef puana en yakın oyuncuyu takip edebilir ve istediğiniz an yeni bir oyun başlatabilirsiniz.
+        </p>
+        <p>
+          Tüm verileriniz yalnızca tarayıcınızda saklanır; herhangi bir sunucuya gönderilmez ve kayıt olmanıza gerek yoktur. Mobil cihazınızdan da rahatlıkla kullanabilirsiniz; arkadaş toplantılarında, kafelerde ya da aile ortamlarında telefonunuzu masaya koyup birlikte takip edebilirsiniz.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 <script>
+  // ==== Accordion toggle ====
+  function toggleAccordion(btn) {
+    const item = btn.closest('.accordion-item');
+    item.classList.toggle('open');
+  }
+
   let state = { mode: 'esli', players: [], rounds: [], currentRound: 1 };
   const cezaCounts = {};
   let dealerOrder = [];   // player indices in deal rotation order
@@ -431,6 +637,7 @@
     }
 
     document.getElementById('setup').style.display = 'none';
+    document.getElementById('content-blocks').style.display = 'none';
     document.getElementById('game').style.display = 'block';
     document.getElementById('game-mode-label').textContent = state.mode === 'esli' ? '· Eşli' : '· Eşsiz';
 
@@ -485,6 +692,7 @@
     if (!confirm('Oyunu sıfırlamak istediğine emin misin?')) return;
     document.getElementById('dealer-modal')?.remove();
     document.getElementById('setup').style.display = 'block';
+    document.getElementById('content-blocks').style.display = 'block';
     document.getElementById('game').style.display = 'none';
   }
 
@@ -670,7 +878,7 @@
 </script>
 
 <footer>
-  <p>© 2026 101 Skor Takipçisi &nbsp;·&nbsp; <a href="/contact.html">İletişim</a> &nbsp;·&nbsp; <a href="/privacy.html">Gizlilik Politikası</a></p>
+  <p>© 2026 101 Skor Takipçisi &nbsp;·&nbsp; <a href="/hakkinda.html">Hakkında</a> &nbsp;·&nbsp; <a href="/sss.html">SSS</a> &nbsp;·&nbsp; <a href="/contact.html">İletişim</a> &nbsp;·&nbsp; <a href="/privacy.html">Gizlilik Politikası</a></p>
 </footer>
 
 </body>
