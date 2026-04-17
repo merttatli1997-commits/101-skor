@@ -13,6 +13,8 @@
       --border: #2e2e38;
       --accent: #c9a84c;
       --accent2: #e8c97a;
+      --red: #d94f4f;
+      --green: #4caf7d;
       --text: #f0ede8;
       --muted: #777;
       --radius: 10px;
@@ -44,6 +46,8 @@
       text-decoration: none;
       letter-spacing: -1px;
     }
+
+    header nav { display: flex; gap: 18px; }
 
     header a.nav-link {
       font-family: 'Lato', sans-serif;
@@ -79,68 +83,80 @@
       margin-bottom: 8px;
     }
 
-    .subtitle {
-      font-size: 14px;
+    .meta {
+      font-size: 12px;
       color: var(--muted);
-      line-height: 1.7;
+      letter-spacing: 1px;
       margin-bottom: 40px;
       padding-bottom: 32px;
       border-bottom: 1px solid var(--border);
     }
 
-    .contact-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .icon {
-      width: 44px;
-      height: 44px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .icon svg {
-      width: 20px;
-      height: 20px;
-      fill: #0e0e10;
-    }
-
-    .contact-info h3 {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .contact-info a {
+    h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 36px 0 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    a.inline {
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: border-color 0.15s;
     }
 
-    .contact-info a:hover { border-color: var(--accent); }
+    a.inline:hover { border-color: var(--accent); }
 
-    .note {
-      margin-top: 24px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 20px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
     }
+
+    .contact-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 20px;
+    }
+
+    .contact-card .label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-card a.email {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-card a.email:hover { color: var(--accent2); }
 
     footer {
       border-top: 1px solid var(--border);
@@ -159,31 +175,33 @@
 
   <header>
     <a class="logo-link" href="/">101</a>
-    <a class="nav-link" href="/privacy.html">Gizlilik Politikası</a>
+    <nav>
+      <a class="nav-link" href="/hakkinda.html">Hakkında</a>
+      <a class="nav-link" href="/sss.html">SSS</a>
+      <a class="nav-link" href="/privacy.html">Gizlilik Politikası</a>
+    </nav>
   </header>
 
   <div class="container">
     <p class="page-label">Bize Ulaşın</p>
     <h1>İletişim</h1>
-    <p class="subtitle">Öneri, geri bildirim veya sorularınız için aşağıdan bize ulaşabilirsiniz.</p>
+    <p class="meta">Öneri, geri bildirim veya sorularınız için aşağıdan bize ulaşabilirsiniz</p>
+
+    <h2>E-posta</h2>
 
     <div class="contact-card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-      </div>
-      <div class="contact-info">
-        <h3>E-posta</h3>
-        <a href="mailto:sadecedesigniletisim@gmail.com">sadecedesigniletisim@gmail.com</a>
+      <div class="contact-icon">✉</div>
+      <div>
+        <div class="label">E-posta</div>
+        <a class="email" href="mailto:sadecedesigniletisim@gmail.com">sadecedesigniletisim@gmail.com</a>
       </div>
     </div>
 
-    <p class="note">Mesajlarınıza en kısa sürede dönmeye çalışırız. Uygulama ile ilgili hata bildirimleri ve önerilerinizi de bu adres üzerinden iletebilirsiniz.</p>
+    <p>Mesajlarınıza en kısa sürede dönmeye çalışırız. Uygulama ile ilgili hata bildirimleri ve önerilerinizi de bu adres üzerinden iletebilirsiniz.</p>
   </div>
 
   <footer>
-    <p>© 2026 101 Skor Takipçisi &nbsp;·&nbsp; <a href="/">Ana Sayfa</a> &nbsp;·&nbsp; <a href="/privacy.html">Gizlilik Politikası</a></p>
+    <p>© 2026 101 Skor Takipçisi &nbsp;·&nbsp; <a href="/">Ana Sayfa</a> &nbsp;·&nbsp; <a href="/hakkinda.html">Hakkında</a> &nbsp;·&nbsp; <a href="/sss.html">SSS</a> &nbsp;·&nbsp; <a href="/privacy.html">Gizlilik Politikası</a></p>
   </footer>
 
 </body>
