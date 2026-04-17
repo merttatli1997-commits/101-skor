@@ -1,158 +1,185 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hakkında – 101 Skor Takipçisi</title>
-<meta name="description" content="101 Skor Takipçisi hakkında bilgi: site neden geliştirildi, kim tarafından yapıldı ve nasıl kullanılır.">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: radial-gradient(ellipse at top, #1a1410 0%, #0a0806 100%);
-    color: #e8e3d5;
-    font-family: 'Georgia', serif;
-    line-height: 1.7;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  header {
-    padding: 28px 20px 16px;
-    text-align: center;
-    border-bottom: 1px solid rgba(212,175,55,0.12);
-  }
-  header a {
-    color: #d4af37;
-    text-decoration: none;
-    font-size: 1.6rem;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-  nav {
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  nav a {
-    color: #b8a875;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: #d4af37; }
-  main {
-    flex: 1;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 40px 24px 60px;
-    width: 100%;
-  }
-  .breadcrumb {
-    color: #6a6356;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  h1 {
-    color: #d4af37;
-    font-size: 2.4rem;
-    margin-bottom: 28px;
-    letter-spacing: 0.5px;
-  }
-  h2 {
-    color: #d4af37;
-    font-size: 1.4rem;
-    margin: 32px 0 14px;
-  }
-  p { margin-bottom: 16px; }
-  ul { margin: 0 0 16px 24px; }
-  li { margin-bottom: 8px; }
-  a.inline {
-    color: #d4af37;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(212,175,55,0.4);
-  }
-  a.inline:hover { border-bottom-color: #d4af37; }
-  footer {
-    text-align: center;
-    padding: 24px 20px;
-    color: #6a6356;
-    font-size: 0.85rem;
-    border-top: 1px solid rgba(212,175,55,0.12);
-  }
-  footer a {
-    color: #b8a875;
-    text-decoration: none;
-    margin: 0 6px;
-  }
-  footer a:hover { color: #d4af37; }
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hakkında – 101 Skor Takipçisi</title>
+  <meta name="description" content="101 Skor Takipçisi hakkında bilgi: site neden geliştirildi, kim tarafından yapıldı ve nasıl kullanılır."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9145233193687325" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --surface: #18181c;
+      --surface2: #222228;
+      --border: #2e2e38;
+      --accent: #c9a84c;
+      --accent2: #e8c97a;
+      --text: #f0ede8;
+      --muted: #777;
+      --radius: 10px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: radial-gradient(ellipse at 20% 0%, #1a1508 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 100%, #0a0a14 0%, transparent 60%);
+    }
+    .topbar {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px 16px;
+      width: 100%;
+      text-align: center;
+    }
+    .topbar a.logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+    .topnav {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .topnav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+      letter-spacing: 0.5px;
+    }
+    .topnav a:hover { color: var(--accent); }
+    main {
+      flex: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 24px 60px;
+      width: 100%;
+    }
+    .breadcrumb {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .page-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 36px;
+      line-height: 1.75;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+      font-size: 36px;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+      font-size: 20px;
+      margin: 28px 0 12px;
+    }
+    p { color: #d8d3c8; margin-bottom: 14px; font-size: 15px; }
+    p:last-child { margin-bottom: 0; }
+    ul { margin: 0 0 16px 22px; }
+    li { margin-bottom: 8px; color: #d8d3c8; font-size: 15px; }
+    li strong { color: var(--accent2); }
+    a.inline {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,0.4);
+    }
+    a.inline:hover { border-bottom-color: var(--accent); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      .page-card { padding: 24px 22px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 18px; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <a href="/">101</a>
-  <nav>
+<div class="topbar">
+  <a href="/" class="logo">101</a>
+  <nav class="topnav">
     <a href="/sss.html">SSS</a>
     <a href="/contact.html">İletişim</a>
     <a href="/privacy.html">Gizlilik Politikası</a>
   </nav>
-</header>
+</div>
 
 <main>
   <div class="breadcrumb">Hakkında</div>
-  <h1>Hakkında</h1>
+  <div class="page-card">
+    <h1>Hakkında</h1>
 
-  <p>
-    <strong>101 Skor Takipçisi</strong>, Türkiye'nin en sevilen masa oyunlarından biri olan 101 Okey'i oynayan herkesin işini kolaylaştırmak için geliştirilmiş ücretsiz ve kayıtsız bir web uygulamasıdır. Kafede, evde ya da arkadaş toplantılarında oynadığınız 101 partilerinde el sonu puanlarını kolayca tutabilir, çift okey ve özel bitiş durumlarını dikkate alarak otomatik hesaplama yapabilirsiniz.
-  </p>
+    <p>
+      <strong>101 Skor Takipçisi</strong>, Türkiye'nin en sevilen masa oyunlarından biri olan 101 Okey'i oynayan herkesin işini kolaylaştırmak için geliştirilmiş ücretsiz ve kayıtsız bir web uygulamasıdır. Kafede, evde ya da arkadaş toplantılarında oynadığınız 101 partilerinde el sonu puanlarını kolayca tutabilir, çift okey ve özel bitiş durumlarını dikkate alarak otomatik hesaplama yapabilirsiniz.
+    </p>
 
-  <h2>Neden Geliştirildi?</h2>
-  <p>
-    101 Okey'in en büyük zorluklarından biri, uzun süren oyunlar boyunca skoru doğru tutmaktır. Çift okey, elden bitirme ve ceza puanları gibi özel durumlar, kâğıt-kalem üzerinde hızlıca karışıklığa yol açabilir. Sohbetin tatlı yerinde "kim kaç puanda?" sorusu sıkça duyulur ve çoğu zaman tartışmaya neden olur.
-  </p>
-  <p>
-    101 Skor Takipçisi tam olarak bu sorunu çözmek için tasarlandı. Sade arayüzü sayesinde oyunun akışını bozmadan, telefonunuzdan ya da bilgisayarınızdan saniyeler içinde el puanı girebilir ve toplam skoru her an görebilirsiniz.
-  </p>
+    <h2>Neden Geliştirildi?</h2>
+    <p>
+      101 Okey'in en büyük zorluklarından biri, uzun süren oyunlar boyunca skoru doğru tutmaktır. Çift okey, elden bitirme ve ceza puanları gibi özel durumlar, kâğıt-kalem üzerinde hızlıca karışıklığa yol açabilir. Sohbetin tatlı yerinde "kim kaç puanda?" sorusu sıkça duyulur ve çoğu zaman tartışmaya neden olur.
+    </p>
+    <p>
+      101 Skor Takipçisi tam olarak bu sorunu çözmek için tasarlandı. Sade arayüzü sayesinde oyunun akışını bozmadan, telefonunuzdan ya da bilgisayarınızdan saniyeler içinde el puanı girebilir ve toplam skoru her an görebilirsiniz.
+    </p>
 
-  <h2>Özellikler</h2>
-  <ul>
-    <li><strong>Eşli ve Eşsiz mod desteği:</strong> Hem ikili karşılaşmalar hem de takım halinde oynanan dörtlü partiler için uygundur.</li>
-    <li><strong>Otomatik hesaplama:</strong> Çift okey ve elden bitirme gibi özel durumlar dikkate alınır.</li>
-    <li><strong>Geçmiş el dökümü:</strong> Her elin sonucunu ayrı ayrı görebilir, geri dönüp kontrol edebilirsiniz.</li>
-    <li><strong>Kayıtsız kullanım:</strong> Üye olmanıza, e-posta vermenize gerek yok.</li>
-    <li><strong>Veri gizliliği:</strong> Tüm bilgiler yalnızca tarayıcınızda tutulur, hiçbir sunucuya gönderilmez.</li>
-    <li><strong>Mobil uyumlu:</strong> Telefon, tablet ve bilgisayardan kolayca kullanılır.</li>
-    <li><strong>Tamamen ücretsiz:</strong> Hiçbir gizli ücret ya da abonelik bulunmaz.</li>
-  </ul>
+    <h2>Özellikler</h2>
+    <ul>
+      <li><strong>Eşli ve eşsiz mod desteği:</strong> Hem ikili karşılaşmalar hem de takım halinde oynanan dörtlü partiler için uygundur.</li>
+      <li><strong>Otomatik hesaplama:</strong> Çift okey ve elden bitirme gibi özel durumlar dikkate alınır.</li>
+      <li><strong>Geçmiş el dökümü:</strong> Her elin sonucunu ayrı ayrı görebilir, geri dönüp kontrol edebilirsiniz.</li>
+      <li><strong>Kayıtsız kullanım:</strong> Üye olmanıza, e-posta vermenize gerek yok.</li>
+      <li><strong>Veri gizliliği:</strong> Tüm bilgiler yalnızca tarayıcınızda tutulur, hiçbir sunucuya gönderilmez.</li>
+      <li><strong>Mobil uyumlu:</strong> Telefon, tablet ve bilgisayardan kolayca kullanılır.</li>
+      <li><strong>Tamamen ücretsiz:</strong> Hiçbir gizli ücret ya da abonelik bulunmaz.</li>
+    </ul>
 
-  <h2>Kim Geliştirdi?</h2>
-  <p>
-    101 Skor Takipçisi, 101 oyununa olan sevgisini paylaşan bir geliştirici tarafından kişisel bir proje olarak hayata geçirildi. Uygulamanın amacı kâr elde etmek değil, oyunseverlerin daha keyifli vakit geçirmesine küçük de olsa katkı sağlamaktır. Geliştirilmesi tamamen bağımsız olarak yapılmıştır ve herhangi bir kurumla bağı bulunmamaktadır.
-  </p>
+    <h2>Kim Geliştirdi?</h2>
+    <p>
+      101 Skor Takipçisi, 101 oyununa olan sevgisini paylaşan bağımsız bir geliştirici tarafından kişisel bir proje olarak hayata geçirildi. Uygulamanın geliştirilmesi tamamen bağımsız olarak yapılmıştır ve herhangi bir kurumla bağı bulunmamaktadır. Sitenin sürekliliği, sayfada gösterilen reklam gelirleriyle desteklenmektedir; bu sayede uygulama tüm kullanıcılara ücretsiz ve reklamlar dışında herhangi bir veri paylaşımı gerektirmeden sunulabilmektedir.
+    </p>
 
-  <h2>Geri Bildirim ve İletişim</h2>
-  <p>
-    Uygulamayı kullanırken karşılaştığınız sorunları, eklemek istediğiniz özellikleri ya da genel önerilerinizi bizimle paylaşabilirsiniz. Her geri bildirim dikkatle değerlendirilir ve uygulamanın gelişmesine katkı sağlar. <a class="inline" href="/contact.html">İletişim sayfasından</a> bize ulaşabilirsiniz.
-  </p>
+    <h2>Geri Bildirim ve İletişim</h2>
+    <p>
+      Uygulamayı kullanırken karşılaştığınız sorunları, eklemek istediğiniz özellikleri ya da genel önerilerinizi bizimle paylaşabilirsiniz. Her geri bildirim dikkatle değerlendirilir ve uygulamanın gelişmesine katkı sağlar. <a class="inline" href="/contact.html">İletişim sayfasından</a> bize ulaşabilirsiniz.
+    </p>
 
-  <h2>Yasal Bilgiler</h2>
-  <p>
-    Site kullanım koşulları ve verilerinizin nasıl işlendiğine dair detaylı bilgiye <a class="inline" href="/privacy.html">Gizlilik Politikası</a> sayfasından ulaşabilirsiniz. Sıkça sorulan sorular için ise <a class="inline" href="/sss.html">SSS sayfasını</a> ziyaret edebilirsiniz.
-  </p>
-
+    <h2>Yasal Bilgiler</h2>
+    <p>
+      Site kullanım koşulları ve verilerinizin nasıl işlendiğine dair detaylı bilgiye <a class="inline" href="/privacy.html">Gizlilik Politikası</a> sayfasından ulaşabilirsiniz. Sıkça sorulan sorular için ise <a class="inline" href="/sss.html">SSS sayfasını</a> ziyaret edebilirsiniz.
+    </p>
+  </div>
 </main>
 
 <footer>
-  © 2026 101 Skor Takipçisi
-  · <a href="/">Ana Sayfa</a>
-  · <a href="/hakkinda.html">Hakkında</a>
-  · <a href="/sss.html">SSS</a>
-  · <a href="/contact.html">İletişim</a>
-  · <a href="/privacy.html">Gizlilik Politikası</a>
+  <p>© 2026 101 Skor Takipçisi &nbsp;·&nbsp; <a href="/">Ana Sayfa</a> &nbsp;·&nbsp; <a href="/hakkinda.html">Hakkında</a> &nbsp;·&nbsp; <a href="/sss.html">SSS</a> &nbsp;·&nbsp; <a href="/contact.html">İletişim</a> &nbsp;·&nbsp; <a href="/privacy.html">Gizlilik Politikası</a></p>
 </footer>
 
 </body>
